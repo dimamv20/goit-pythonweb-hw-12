@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from database import SessionLocal
-from schemas import ContactCreate, ContactRead
-from crud import (
+from app.database import SessionLocal
+from app.schemas import ContactCreate, ContactRead
+from app.crud import (
     create_contact,
     get_all_contacts,
     get_contact,

@@ -2,7 +2,7 @@ from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
 from pydantic import EmailStr
 from email.utils import formataddr
 from sqlalchemy.orm import Session
-from models import Contact
+from app.models import Contact
 from datetime import datetime
 from utils import get_unique_verification_token
 import os
