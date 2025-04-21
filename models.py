@@ -1,12 +1,27 @@
-from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy import Column, Integer, String, Date, Boolean, ForeignKey
+from sqlalchemy.orm import relationship
 from database import Base
 
 class Contact(Base):
-    __tablename__ = "contacts"
+    __tablename__ = 'contacts'
 
-    id = Column(Integer, primary_key=True)
-    first_name = Column(String)
-    last_name = Column(String)
-    email = Column(String, unique=True)
-    phone = Column(String)
+    id = Column(Integer, primary_key=True, index=True)
+    first_name = Column(String, index=True)
+    last_name = Column(String, index=True)
+    email = Column(String, unique=True, index=True)
     birthday = Column(Date)
+    is_verified = Column(Boolean, default=False)
+    user_id = Column(Integer, ForeignKey("users.id"))
+
+    user = relationship("User", back_populates="contacts")
+
+class User(Base):
+    __tablename__ = 'users'
+
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, unique=True, index=True)
+    password = Column(String)
+    is_verified = Column(Boolean, default=False)
+    avatar_url = Column(String, nullable=True)
+
+    contacts = relationship("Contact", back_populates="user")

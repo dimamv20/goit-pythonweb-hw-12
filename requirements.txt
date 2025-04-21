@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+passlib
+python-dotenv
+python-jose
+smtplib
+cloudinary
+pydantic
